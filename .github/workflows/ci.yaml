@@ -77,7 +77,7 @@ jobs:
             helm upgrade --install portfolio-dev /home/ubuntu/portfolio/helm/portfolio \
               -f /home/ubuntu/portfolio/helm/portfolio/values.dev.yaml \
               --namespace dev \
-              --set image.tag=main \
+              --set image.tag=sha-${{ github.sha }} \
               --wait
 
   deploy-staging:
@@ -105,7 +105,7 @@ jobs:
             helm upgrade --install portfolio-staging /home/ubuntu/portfolio/helm/portfolio \
               -f /home/ubuntu/portfolio/helm/portfolio/values.staging.yaml \
               --namespace staging \
-              --set image.tag=main \
+              --set image.tag=sha-${{ github.sha }} \
               --wait
 
   deploy-prod:
@@ -132,5 +132,5 @@ jobs:
             helm upgrade --install portfolio-prod /home/ubuntu/portfolio/helm/portfolio \
               -f /home/ubuntu/portfolio/helm/portfolio/values.prod.yaml \
               --namespace portfolio \
-              --set image.tag=main \
+              --set image.tag=sha-${{ github.sha }} \
               --wait
