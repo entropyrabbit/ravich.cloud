@@ -10,7 +10,9 @@ service:
   port: 80
 
 ingress:
-  host: ravich.cloud
+  hosts: 
+    - ravich.cloud
+    - www.ravich.cloud
 
 resources:
   requests:

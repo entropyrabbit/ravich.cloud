@@ -6,14 +6,17 @@ metadata:
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
+  ingressClassName: traefik
   rules:
-  - host: {{ .Values.ingress.host }}
+  {{- range .Values.ingress.hosts }}
+  - host: {{ . }}
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: {{ .Release.Name }}
+            name: {{ $.Release.Name }}
             port:
-              number: {{ .Values.service.port }}
+              number: {{ $.Values.service.port }}
+  {{- end }}
